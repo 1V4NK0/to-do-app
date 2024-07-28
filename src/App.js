@@ -22,12 +22,19 @@ export default function App() {
     setTasks((tasks) => tasks.filter(task => task.id !== id))
   }
 
+  function handleClear() {
+    if (tasks.length > 0){
+    let choice = window.confirm("Do you want to delete all tasks?");
+    if (choice) setTasks([])
+    }
+  }
+
 
   return (
     <div className="app">
       <Logo />
       <Input onAddTask={addTask}/>
-      <ToDoList tasks={tasks} onToggle={handleToggle} onDelete={handleDelete}/>
+      <ToDoList tasks={tasks} onToggle={handleToggle} onDelete={handleDelete} onClear={handleClear}/>
     </div>
   )
 }
